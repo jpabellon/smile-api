@@ -1,4 +1,4 @@
-# Example Data Owner Journey
+# Example Data Owner Journeys
 
 Smile Network allows end users or data owners to give access to their data stored in a variety of providers (eg payroll, HRIS, gig platforms) to applications that require it like banking apps or lending apps. This can be done through a Smile Network "bridge" mechanism that links a user's profile to their employer and employment detail. Users will authenticate via a frontend mechanism (a web modal or redirect called "Greet") that developers will use to allow the data owner to authenticate and share their data
 
