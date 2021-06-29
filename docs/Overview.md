@@ -1,17 +1,6 @@
 # Product Concept
 
-Created: March 24, 2021 8:42 AM
-Created By: Jan Pabellon
-Last Edited By: Jan Pabellon
-Last Edited Time: April 19, 2021 5:22 PM
-Related to Roadmap (Column): https://www.notion.so/Define-product-concept-and-architecture-a9c4c508dd4642f48360415ad26babaf
-Stakeholders: Z Wang, Jerome Eger, Johan Uddman, JG Wen
-Status: In Review 👀
-Type: Architecture Overview
-
-# Table of Contents
-
-# Problems we are Solving
+## Problems we are Solving
 
 1. For individuals, we want to make access and sharing of personal, employment, and financial data easy, seamless, and secure, so that they can:
     - Get access to financial services such as a savings account, payroll account, credit card, loans, insurance
@@ -27,19 +16,19 @@ Type: Architecture Overview
     - They can work with the existing knowledge, tools they know, since we will provide them standard interfaces/protocols (eg REST/GraphQL via HTTPS, using XML/JSON data formats)
     - They are incentivized to just use our service, instead of building the integrations for their applications themselves
 
-# Example Use Cases and Benefits
+## Example Use Cases and Benefits
 
 1. Work and income verification (for KYC)
 2. Auto-populate applications (for smoother onboarding, improved conversion)
 3. Direct deposit switching (for payroll, employee onboarding)
 
-# Similar Companies
+## Similar Companies
 
 The product concept for Smile Network is to be a unified API or data aggregation platform similar to the following companies:
 
 [Similar Companies](https://www.notion.so/d87a20e0123f4587b48c05e9aac0f386)
 
-# Target Verticals/Segments
+## Target Verticals/Segments
 
 We will target the following verticals or segments for our services:
 
@@ -56,7 +45,7 @@ We will target the following verticals or segments for our services:
     - Any company
 - Other Data aggregators/providers
 
-# Target Personas
+## Target Personas
 
 - Implementors
     - Developers
