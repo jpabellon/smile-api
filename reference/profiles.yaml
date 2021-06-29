@@ -192,11 +192,15 @@ components:
         - lastName
         - email
         - emailVerified
+    Identity:
+      title: Identity
+      type: object
+      properties:
+        id:
+          type: string
   securitySchemes:
-    API Key:
-      name: test1234
-      type: apiKey
-      in: header
-      description: ''
+    myApiKey:
+      type: http
+      scheme: bearer
 security:
   - API Key: []
