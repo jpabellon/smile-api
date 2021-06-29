@@ -27,7 +27,7 @@
         }
       ],
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Profiles API",
         "tags": [],
         "responses": {
           "200": {
@@ -518,7 +518,8 @@
         "readOnly": true,
         "examples": [
           "Primary"
-        ]
+        ],
+        "description": ""
       },
       "Country": {
         "type": "string",
@@ -835,8 +836,18 @@
         ]
       }
     },
-    "securitySchemes": {},
+    "securitySchemes": {
+      "apiKey": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "examples": {},
     "responses": {}
-  }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
 }
