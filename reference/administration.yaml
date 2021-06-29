@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+  title: administration
+  version: 0.1.0
+  contact:
+    name: Smile Technology Pte Ltd
+    url: 'https://www.getsmileapi.com'
+    email: info@getsmileapi.com
+  termsOfService: 'https://www.getsmileapi.com/terms-and-conditions'
+  description: Management and administration APIs
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: Id of an existing user.
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples: {}
+        '404':
+          description: User Not Found
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+  /users:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples: {}
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                dateOfBirth:
+                  type: string
+                  format: date
+              required:
+                - firstName
+                - lastName
+                - email
+                - dateOfBirth
+            examples: {}
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+    parameters: []
+  /users/:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: get-users
+      description: Retrieve the collection of users.
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      x-examples: {}
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 5a105513-e6e5-48f2-a54f-b47911aebe74
+            createdDate:
+              type: string
+              format: date-time
+              example: '2021-06-29T10:09:28+0800'
+            tokenId:
+              type: string
+              format: uuid
+              example: aec00bb1-9983-40bb-9e14-c7f07d96be6f
+            providerId:
+              type: string
+              format: uuid
+              example: 5c5b069f-d847-4f75-969f-a8b0830bf12b
+    Users:
+      title: User
+      type: array
+      description: ''
+      x-examples: {}
+      items:
+        type:
+          - string
+          - object
+    Errors:
+      title: Errors
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      description: ''
+    MetaData:
+      description: ''
+      type: object
+      x-examples:
+        example-1:
+          createdDate: '2021-08-12'
+          accountsId: eb240ec6-a227-47ca-b7c7-fbbdfe7170a0
+          actionsId: ffec8d06-5d03-42b9-9f75-6c66cb6efed5
+      properties:
+        createdDate:
+          type: string
+          minLength: 1
+          format: date-time
+          readOnly: true
+        usersId:
+          type: string
+          minLength: 1
+        actionsId:
+          type: string
+          minLength: 1
+      required:
+        - createdDate
+        - usersId
+        - actionsId
+  securitySchemes: {}
+tags:
+  - name: profiles
