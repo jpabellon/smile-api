@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Blink API
+  version: 0.1.0
+  description: 'The Smile API for link flow. '
+  contact:
+    name: Smile Technology Pte Ltd
+    url: 'https://www.getsmileapi.com'
+    email: info@getsmileapi.com
+  termsOfService: 'https://www.getsmileapi.com/terms-and-conditions'
+servers:
+  - url: 'https://access.getsmileapi.com/sandbox'
+    description: Sandbox
+  - url: 'https://access.getsmileapi.com/development'
+    description: Development
+  - url: 'https://access.getsmileapi.com/production'
+    description: Production
+paths:
+  /sessions:
+    post:
+      summary: Create Session
+      tags:
+        - Sessions
+      operationId: createSession
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+      description: Send user credentials to start a login session with a data provider
+  '/sessions/{id}/verify':
+    post:
+      summary: Verify Session
+      tags:
+        - Sessions
+      operationId: verifySession
+      parameters:
+        - name: id
+          in: path
+          description: ID of the specific session
+          required: true
+          schema:
+            type: string
+            example: example-session-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Verification'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+      description: Send verification code to the ongoing session
+components:
+  schemas:
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          title: Session ID
+          description: Unique ID of this session
+          format: uuid
+        blinkToken:
+          type: string
+          description: Blink token
+          example: exampe-token
+        providerId:
+          type: string
+          description: Unique ID of the provider
+          format: uuid
+        status:
+          $ref: '#/components/schemas/SessionStatus'
+        accountId:
+          type: string
+          description: Newly created unique account id
+          format: uuid
+    Verification:
+      type: object
+      properties:
+        blinkToken:
+          type: string
+          example: example-link-token
+          description: Blink token
+        code:
+          type: string
+          example: example-code
+          description: Code
+    SessionStatus:
+      type: string
+      enum:
+        - failed
+        - email_verification_needed
+        - sms_verification_needed
+        - success
+      description: Session status
+  securitySchemes:
+    apiKey:
+      name: x-api-key
+      type: apiKey
+      in: query
+tags:
+  - name: Sessions
+security:
+  - apiKey: []
