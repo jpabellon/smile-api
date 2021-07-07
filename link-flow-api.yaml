@@ -107,11 +107,7 @@ components:
       description: Session status
       x-tags:
         - Sessions
-  securitySchemes:
-    apiKey:
-      name: x-api-key
-      type: apiKey
-      in: query
+  securitySchemes: {}
 tags:
   - name: Sessions
 security:
