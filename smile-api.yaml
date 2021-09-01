@@ -9,9 +9,9 @@ info:
     email: info@getsmileapi.com
   termsOfService: 'https://www.getsmileapi.com/terms-and-conditions'
 servers:
-  - url: 'https://sandbox.smileapi.io'
+  - url: 'https://sandbox.smileapi.io/v1'
     description: Sandbox
-  - url: 'https://open.smileapi.io'
+  - url: 'https://open.smileapi.io/v1'
     description: Production
 paths:
   /providers:
