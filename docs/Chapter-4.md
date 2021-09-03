@@ -23,17 +23,17 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="smileicon32.webp" sizes="32x32">
     <link rel="icon" href="smileicon192.webp" sizes="192x192">
-    <title>Smile Wink Quickstart - Sandbox Mode</title>
+    <title>Smile Wink Quickstart</title>
 </head>
 
 <body>
-    <script src="https://cdn.smileapi.io/v1/smile.v1.js"></script>
+    <script src="https://web.smileapi.io/v1/smile.v1.js"></script>
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
              * The Link API URI. Note: Sandbox and Production modes are using different API URIs.
              */
-            apiHost: 'https://link-sandbox.smileapi.io',
+            apiHost: 'https://link-sandbox.smileapi.io/v1',
             /**
              * User token passed from your backend service which is obtained from the Smile API.
              */
@@ -64,7 +64,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
             },
 
             onClose: () => {
-                console.log('Widget closed')
+                console.log('Link closed')
             },
 
             onTokenExpired: updateToken => {
@@ -74,7 +74,6 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
         smileLinkModal.open()
     </script>
 </body>
-
 </html>
 
 ```
@@ -83,8 +82,8 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 
 | Parameter |Value |
 |----------|---------|
-| apiHost | https://link-sandbox.smileapi.io for Sandbox |
-|         | https://link.smileapi.io for Production |
+| apiHost | https://link-sandbox.smileapi.io/v1 for Sandbox |
+|         | https://link.smileapi.io/v1 for Production |
 | userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
 
 ---
@@ -92,7 +91,9 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 ![Example](https://img.icons8.com/material/50/000000/example.png)
 
 ## Quickstart Sample Implementation
-We also provide sample code in [Github] which you can download and modify according to your own requirements. The example code installs a small server running on Node.js that automatically retrieves a token from our API, so you can instantiate the Wink widget. 
+> We provide sample code in [Github](https://github.com/SmileAPI/quickstart) which you can download and modify according to your own requirements. 
+
+The example code installs a small server running on Node.js that automatically retrieves a token from our API, so you can instantiate the Wink widget. 
 
 The example implementation is composed of two parts:
 * Under /frontend, you will find example code in HTML that already has the Wink Javascript SDK embedded already.
@@ -131,8 +132,8 @@ touch .env
 APP_PORT=<portnumber>
 
 # Smile Link API keys (you can get this by requesting access from access@getsmileapi.com)
-API_KEY_ID=<clientid>
-API_KEY_SECRET=<clientsecret>
+API_KEY_ID=<apikeyid>
+API_KEY_SECRET=<apisecret>
 
 # API Host (whether this will run in Sandbox or Production)
 API_HOST=<apiURL>

@@ -314,6 +314,8 @@ paths:
                     message: The credentials you provided are incorrect.
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
+        '415':
+          description: Unsupported Media Type
         '429':
           description: Standard error response
           content:
@@ -874,6 +876,52 @@ paths:
                     message: The credentials you provided are incorrect.
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
+        '415':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
         '429':
           description: Standard error response
           content:
@@ -1180,7 +1228,7 @@ paths:
                               additionalProperties:
                                 type: string
                               maxProperties: 5
-                              description: |
+                              description: |-
                                 The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                                 - The JSON values must be Strings (no nested JSON objects allowed)
                                 - Only ASCII characters can be used
@@ -1336,6 +1384,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -1645,7 +1739,7 @@ paths:
                   additionalProperties:
                     type: string
                   maxProperties: 5
-                  description: |
+                  description: |-
                     The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                     - The JSON values must be Strings (no nested JSON objects allowed)
                     - Only ASCII characters can be used
@@ -1714,7 +1808,7 @@ paths:
                             additionalProperties:
                               type: string
                             maxProperties: 5
-                            description: |
+                            description: |-
                               The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                               - The JSON values must be Strings (no nested JSON objects allowed)
                               - Only ASCII characters can be used
@@ -1732,18 +1826,24 @@ paths:
                       token:
                         title: Token
                         type: object
+                        x-tags:
+                          - Tokens
+                        description: A method for securely transmitting information between Smile and the user.
                         properties:
                           expiresAt:
                             type: string
+                            title: Date and Time string
                             format: date-time
-                            description: 'Expirty date and time for the token, This will be of the form `2021-04-14T09:30:24Z`.'
+                            example: '2021-04-14T09:30:24Z'
+                            description: Date and time
+                            x-internal: true
                           mode:
                             type: string
                             enum:
                               - SANDBOX
                               - PRODUCTION
                             example: SANDBOX
-                            description: Valid Smile environment for the Token.
+                            description: Valid Smile mode for the Token.
                           accessToken:
                             type: string
                             description: Short-lived token to initiate link flow.
@@ -1751,9 +1851,6 @@ paths:
                           - expiresAt
                           - mode
                           - accessToken
-                        x-tags:
-                          - Tokens
-                        description: A method for securely transmitting information between Smile and the user.
                     required:
                       - user
                       - token
@@ -2290,7 +2387,7 @@ paths:
                         additionalProperties:
                           type: string
                         maxProperties: 5
-                        description: |
+                        description: |-
                           The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                           - The JSON values must be Strings (no nested JSON objects allowed)
                           - Only ASCII characters can be used
@@ -2446,6 +2543,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -2769,18 +2912,24 @@ paths:
                   data:
                     title: Token
                     type: object
+                    x-tags:
+                      - Tokens
+                    description: A method for securely transmitting information between Smile and the user.
                     properties:
                       expiresAt:
                         type: string
+                        title: Date and Time string
                         format: date-time
-                        description: 'Expirty date and time for the token, This will be of the form `2021-04-14T09:30:24Z`.'
+                        example: '2021-04-14T09:30:24Z'
+                        description: Date and time
+                        x-internal: true
                       mode:
                         type: string
                         enum:
                           - SANDBOX
                           - PRODUCTION
                         example: SANDBOX
-                        description: Valid Smile environment for the Token.
+                        description: Valid Smile mode for the Token.
                       accessToken:
                         type: string
                         description: Short-lived token to initiate link flow.
@@ -2788,9 +2937,6 @@ paths:
                       - expiresAt
                       - mode
                       - accessToken
-                    x-tags:
-                      - Tokens
-                    description: A method for securely transmitting information between Smile and the user.
                 x-internal: true
               examples: {}
         '400':
@@ -2932,6 +3078,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -3286,8 +3478,11 @@ paths:
                               x-internal: true
                             createdAt:
                               type: string
+                              title: Date and Time string
                               format: date-time
                               example: '2021-04-14T09:30:24Z'
+                              description: Date and time
+                              x-internal: true
                             providerId:
                               type: string
                               example: grab
@@ -3302,12 +3497,13 @@ paths:
                               description: Account connection status.
                             userId:
                               type: string
-                              description: The user ID associated with this account.
+                              description: User ID associated with this account
                           required:
                             - id
                             - createdAt
                             - providerId
                             - connectionStatus
+                            - userId
                 x-internal: true
               examples: {}
         '400':
@@ -3449,6 +3645,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -3742,7 +3984,7 @@ paths:
           schema:
             type: string
           description: Uses the filter values of the previous page to determine the next set of items.
-        - name: userid
+        - name: userId
           in: query
           required: false
           schema:
@@ -3815,8 +4057,11 @@ paths:
                         x-internal: true
                       createdAt:
                         type: string
+                        title: Date and Time string
                         format: date-time
                         example: '2021-04-14T09:30:24Z'
+                        description: Date and time
+                        x-internal: true
                       providerId:
                         type: string
                         example: grab
@@ -3831,12 +4076,13 @@ paths:
                         description: Account connection status.
                       userId:
                         type: string
-                        description: The user ID associated with this account.
+                        description: User ID associated with this account
                     required:
                       - id
                       - createdAt
                       - providerId
                       - connectionStatus
+                      - userId
                 x-internal: true
               examples: {}
         '400':
@@ -3978,6 +4224,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -4313,44 +4605,7 @@ paths:
                           type: object
                           title: Identity
                           description: The stored identity information of the user from an employment data provider.
-                          x-examples:
-                            example-1:
-                              value:
-                                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                                fullName: 'George Cimafranca Palomero, Jr'
-                                firstName: George
-                                middleName: Cimafranca
-                                lastName: Palomero
-                                suffix: II
-                                gender: Male
-                                dob: '2019-08-24'
-                                maritalStatus: Divorced
-                                countryResidence: AF
-                                citizenship: Citizen
-                                photoUrl: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
-                                email:
-                                  - address: gpalomero@yahoo.com
-                                    type: Primary
-                                mobilePhone:
-                                  - number: string
-                                    type: Primary
-                                fixedPhone:
-                                  - number: string
-                                    type: Primary
-                                socialProfile:
-                                  - socialUrl: 'https://www.facebook.com/gpalomero'
-                                    type: Twitter
-                                address:
-                                  - fullAddress: string
-                                    line1: string
-                                    line2: string
-                                    city: string
-                                    region: string
-                                    zip: string
-                                    country: PH
-                                    latitude: string
-                                    longitude: string
-                                    type: Primary
+                          x-examples: {}
                           x-tags:
                             - Identities
                           properties:
@@ -4787,7 +5042,7 @@ paths:
                               items:
                                 title: Address Object
                                 type: object
-                                description: ''
+                                description: Address object
                                 properties:
                                   fullAddress:
                                     type: string
@@ -5083,21 +5338,32 @@ paths:
                                     description: Whether address is primary or secondary
                                 x-internal: true
                             metadata:
+                              title: Accounts Metadata
                               type: object
+                              description: Metadata related to account-specific data
+                              x-internal: true
                               properties:
                                 createdAt:
                                   type: string
+                                  title: Date and Time string
                                   format: date-time
-                                  description: 'The datetime when this identity was retrieved by Smile, This will be of the form `2021-04-14T09:30:24Z`.'
-                                accountId:
+                                  example: '2021-04-14T09:30:24Z'
+                                  description: Date and time
+                                  x-internal: true
+                                accountsId:
                                   type: string
-                                  description: the account ID associated with this identity.
+                                  description: The account ID associated with this object
                                 userId:
                                   type: string
-                                  description: the user ID associated with this identity.
+                                  description: The user ID associated with this object
+                              required:
+                                - createdAt
+                                - accountsId
+                                - userId
                           required:
                             - id
                             - fullName
+                            - metadata
                 x-internal: true
               examples: {}
         '400':
@@ -5239,6 +5505,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -5532,12 +5844,18 @@ paths:
           schema:
             type: string
           description: Uses the filter values of the previous page to determine the next set of items.
-        - name: userid
+        - name: userId
           in: query
           required: false
           schema:
             type: string
           description: Filter to those associated with a particular user ID.
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter to those associated with a particular account ID.
     parameters: []
   '/identities/{id}':
     get:
@@ -5584,44 +5902,7 @@ paths:
                     type: object
                     title: Identity
                     description: The stored identity information of the user from an employment data provider.
-                    x-examples:
-                      example-1:
-                        value:
-                          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                          fullName: 'George Cimafranca Palomero, Jr'
-                          firstName: George
-                          middleName: Cimafranca
-                          lastName: Palomero
-                          suffix: II
-                          gender: Male
-                          dob: '2019-08-24'
-                          maritalStatus: Divorced
-                          countryResidence: AF
-                          citizenship: Citizen
-                          photoUrl: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
-                          email:
-                            - address: gpalomero@yahoo.com
-                              type: Primary
-                          mobilePhone:
-                            - number: string
-                              type: Primary
-                          fixedPhone:
-                            - number: string
-                              type: Primary
-                          socialProfile:
-                            - socialUrl: 'https://www.facebook.com/gpalomero'
-                              type: Twitter
-                          address:
-                            - fullAddress: string
-                              line1: string
-                              line2: string
-                              city: string
-                              region: string
-                              zip: string
-                              country: PH
-                              latitude: string
-                              longitude: string
-                              type: Primary
+                    x-examples: {}
                     x-tags:
                       - Identities
                     properties:
@@ -6058,7 +6339,7 @@ paths:
                         items:
                           title: Address Object
                           type: object
-                          description: ''
+                          description: Address object
                           properties:
                             fullAddress:
                               type: string
@@ -6354,21 +6635,32 @@ paths:
                               description: Whether address is primary or secondary
                           x-internal: true
                       metadata:
+                        title: Accounts Metadata
                         type: object
+                        description: Metadata related to account-specific data
+                        x-internal: true
                         properties:
                           createdAt:
                             type: string
+                            title: Date and Time string
                             format: date-time
-                            description: 'The datetime when this identity was retrieved by Smile, This will be of the form `2021-04-14T09:30:24Z`.'
-                          accountId:
+                            example: '2021-04-14T09:30:24Z'
+                            description: Date and time
+                            x-internal: true
+                          accountsId:
                             type: string
-                            description: the account ID associated with this identity.
+                            description: The account ID associated with this object
                           userId:
                             type: string
-                            description: the user ID associated with this identity.
+                            description: The user ID associated with this object
+                        required:
+                          - createdAt
+                          - accountsId
+                          - userId
                     required:
                       - id
                       - fullName
+                      - metadata
                 x-internal: true
               examples: {}
         '400':
@@ -6510,6 +6802,52 @@ paths:
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
         '404':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    title: Object-Metadata-Ref-API-Code
+                    description: Request status code
+                    enum:
+                      - OK
+                      - CREATED
+                      - INVALID_CREDENTIALS
+                      - INVALID_PARAMETERS
+                      - INVALID_TOKEN
+                      - UNAUTHORIZED_ACCESS
+                      - MISSING_RESOURCE
+                      - REQUEST_LIMIT_EXCEEDED
+                      - SERVER_ERROR
+                      - UNSUPPORTED_METHOD
+                      - SERVER_UNAVAILABLE
+                      - TIME_LIMIT_EXCEEDED
+                    example: OK
+                    x-internal: true
+                  message:
+                    type: string
+                    title: Object-Metadata-Ref-Message
+                    description: Message response to the request
+                    example: Success
+                    x-internal: true
+                  requestId:
+                    type: string
+                    title: Object-Metadata-Ref-RequestID
+                    description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+                    x-internal: true
+                  data:
+                    type: object
+              examples:
+                Invalid Credentials:
+                  value:
+                    code: INVALID_CREDENTIALS
+                    message: The credentials you provided are incorrect.
+                    requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                    data: {}
+        '415':
           description: Standard error response
           content:
             application/json:
@@ -7075,7 +7413,7 @@ components:
           additionalProperties:
             type: string
           maxProperties: 5
-          description: |
+          description: |-
             The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
             - The JSON values must be Strings (no nested JSON objects allowed)
             - Only ASCII characters can be used
@@ -7099,7 +7437,7 @@ components:
           additionalProperties:
             type: string
           maxProperties: 5
-          description: |
+          description: |-
             The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
             - The JSON values must be Strings (no nested JSON objects allowed)
             - Only ASCII characters can be used
@@ -7162,7 +7500,7 @@ components:
                   additionalProperties:
                     type: string
                   maxProperties: 5
-                  description: |
+                  description: |-
                     The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                     - The JSON values must be Strings (no nested JSON objects allowed)
                     - Only ASCII characters can be used
@@ -7180,18 +7518,24 @@ components:
             token:
               title: Token
               type: object
+              x-tags:
+                - Tokens
+              description: A method for securely transmitting information between Smile and the user.
               properties:
                 expiresAt:
                   type: string
+                  title: Date and Time string
                   format: date-time
-                  description: 'Expirty date and time for the token, This will be of the form `2021-04-14T09:30:24Z`.'
+                  example: '2021-04-14T09:30:24Z'
+                  description: Date and time
+                  x-internal: true
                 mode:
                   type: string
                   enum:
                     - SANDBOX
                     - PRODUCTION
                   example: SANDBOX
-                  description: Valid Smile environment for the Token.
+                  description: Valid Smile mode for the Token.
                 accessToken:
                   type: string
                   description: Short-lived token to initiate link flow.
@@ -7199,9 +7543,6 @@ components:
                 - expiresAt
                 - mode
                 - accessToken
-              x-tags:
-                - Tokens
-              description: A method for securely transmitting information between Smile and the user.
           required:
             - user
             - token
@@ -7257,7 +7598,7 @@ components:
               additionalProperties:
                 type: string
               maxProperties: 5
-              description: |
+              description: |-
                 The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                 - The JSON values must be Strings (no nested JSON objects allowed)
                 - Only ASCII characters can be used
@@ -7336,7 +7677,7 @@ components:
                     additionalProperties:
                       type: string
                     maxProperties: 5
-                    description: |
+                    description: |-
                       The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
                       - The JSON values must be Strings (no nested JSON objects allowed)
                       - Only ASCII characters can be used
@@ -7355,18 +7696,24 @@ components:
     Token:
       title: Token
       type: object
+      x-tags:
+        - Tokens
+      description: A method for securely transmitting information between Smile and the user.
       properties:
         expiresAt:
           type: string
+          title: Date and Time string
           format: date-time
-          description: 'Expirty date and time for the token, This will be of the form `2021-04-14T09:30:24Z`.'
+          example: '2021-04-14T09:30:24Z'
+          description: Date and time
+          x-internal: true
         mode:
           type: string
           enum:
             - SANDBOX
             - PRODUCTION
           example: SANDBOX
-          description: Valid Smile environment for the Token.
+          description: Valid Smile mode for the Token.
         accessToken:
           type: string
           description: Short-lived token to initiate link flow.
@@ -7374,9 +7721,6 @@ components:
         - expiresAt
         - mode
         - accessToken
-      x-tags:
-        - Tokens
-      description: A method for securely transmitting information between Smile and the user.
     TokenPostResponse:
       title: Token Post Response
       properties:
@@ -7413,18 +7757,24 @@ components:
         data:
           title: Token
           type: object
+          x-tags:
+            - Tokens
+          description: A method for securely transmitting information between Smile and the user.
           properties:
             expiresAt:
               type: string
+              title: Date and Time string
               format: date-time
-              description: 'Expirty date and time for the token, This will be of the form `2021-04-14T09:30:24Z`.'
+              example: '2021-04-14T09:30:24Z'
+              description: Date and time
+              x-internal: true
             mode:
               type: string
               enum:
                 - SANDBOX
                 - PRODUCTION
               example: SANDBOX
-              description: Valid Smile environment for the Token.
+              description: Valid Smile mode for the Token.
             accessToken:
               type: string
               description: Short-lived token to initiate link flow.
@@ -7432,9 +7782,6 @@ components:
             - expiresAt
             - mode
             - accessToken
-          x-tags:
-            - Tokens
-          description: A method for securely transmitting information between Smile and the user.
       x-internal: true
     Account:
       title: Account
@@ -7450,8 +7797,11 @@ components:
           x-internal: true
         createdAt:
           type: string
+          title: Date and Time string
           format: date-time
           example: '2021-04-14T09:30:24Z'
+          description: Date and time
+          x-internal: true
         providerId:
           type: string
           example: grab
@@ -7466,12 +7816,13 @@ components:
           description: Account connection status.
         userId:
           type: string
-          description: The user ID associated with this account.
+          description: User ID associated with this account
       required:
         - id
         - createdAt
         - providerId
         - connectionStatus
+        - userId
     AccountGetResponse:
       title: Account Get Response
       properties:
@@ -7519,8 +7870,11 @@ components:
               x-internal: true
             createdAt:
               type: string
+              title: Date and Time string
               format: date-time
               example: '2021-04-14T09:30:24Z'
+              description: Date and time
+              x-internal: true
             providerId:
               type: string
               example: grab
@@ -7535,12 +7889,13 @@ components:
               description: Account connection status.
             userId:
               type: string
-              description: The user ID associated with this account.
+              description: User ID associated with this account
           required:
             - id
             - createdAt
             - providerId
             - connectionStatus
+            - userId
       x-internal: true
     AccountListResponse:
       title: Account List Response
@@ -7601,8 +7956,11 @@ components:
                     x-internal: true
                   createdAt:
                     type: string
+                    title: Date and Time string
                     format: date-time
                     example: '2021-04-14T09:30:24Z'
+                    description: Date and time
+                    x-internal: true
                   providerId:
                     type: string
                     example: grab
@@ -7617,55 +7975,19 @@ components:
                     description: Account connection status.
                   userId:
                     type: string
-                    description: The user ID associated with this account.
+                    description: User ID associated with this account
                 required:
                   - id
                   - createdAt
                   - providerId
                   - connectionStatus
+                  - userId
       x-internal: true
     Identity:
       type: object
       title: Identity
       description: The stored identity information of the user from an employment data provider.
-      x-examples:
-        example-1:
-          value:
-            id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-            fullName: 'George Cimafranca Palomero, Jr'
-            firstName: George
-            middleName: Cimafranca
-            lastName: Palomero
-            suffix: II
-            gender: Male
-            dob: '2019-08-24'
-            maritalStatus: Divorced
-            countryResidence: AF
-            citizenship: Citizen
-            photoUrl: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
-            email:
-              - address: gpalomero@yahoo.com
-                type: Primary
-            mobilePhone:
-              - number: string
-                type: Primary
-            fixedPhone:
-              - number: string
-                type: Primary
-            socialProfile:
-              - socialUrl: 'https://www.facebook.com/gpalomero'
-                type: Twitter
-            address:
-              - fullAddress: string
-                line1: string
-                line2: string
-                city: string
-                region: string
-                zip: string
-                country: PH
-                latitude: string
-                longitude: string
-                type: Primary
+      x-examples: {}
       x-tags:
         - Identities
       properties:
@@ -8102,7 +8424,7 @@ components:
           items:
             title: Address Object
             type: object
-            description: ''
+            description: Address object
             properties:
               fullAddress:
                 type: string
@@ -8398,21 +8720,32 @@ components:
                 description: Whether address is primary or secondary
             x-internal: true
         metadata:
+          title: Accounts Metadata
           type: object
+          description: Metadata related to account-specific data
+          x-internal: true
           properties:
             createdAt:
               type: string
+              title: Date and Time string
               format: date-time
-              description: 'The datetime when this identity was retrieved by Smile, This will be of the form `2021-04-14T09:30:24Z`.'
-            accountId:
+              example: '2021-04-14T09:30:24Z'
+              description: Date and time
+              x-internal: true
+            accountsId:
               type: string
-              description: the account ID associated with this identity.
+              description: The account ID associated with this object
             userId:
               type: string
-              description: the user ID associated with this identity.
+              description: The user ID associated with this object
+          required:
+            - createdAt
+            - accountsId
+            - userId
       required:
         - id
         - fullName
+        - metadata
     IdentityGetResponse:
       title: Identity Get Response
       properties:
@@ -8450,44 +8783,7 @@ components:
           type: object
           title: Identity
           description: The stored identity information of the user from an employment data provider.
-          x-examples:
-            example-1:
-              value:
-                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                fullName: 'George Cimafranca Palomero, Jr'
-                firstName: George
-                middleName: Cimafranca
-                lastName: Palomero
-                suffix: II
-                gender: Male
-                dob: '2019-08-24'
-                maritalStatus: Divorced
-                countryResidence: AF
-                citizenship: Citizen
-                photoUrl: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
-                email:
-                  - address: gpalomero@yahoo.com
-                    type: Primary
-                mobilePhone:
-                  - number: string
-                    type: Primary
-                fixedPhone:
-                  - number: string
-                    type: Primary
-                socialProfile:
-                  - socialUrl: 'https://www.facebook.com/gpalomero'
-                    type: Twitter
-                address:
-                  - fullAddress: string
-                    line1: string
-                    line2: string
-                    city: string
-                    region: string
-                    zip: string
-                    country: PH
-                    latitude: string
-                    longitude: string
-                    type: Primary
+          x-examples: {}
           x-tags:
             - Identities
           properties:
@@ -8924,7 +9220,7 @@ components:
               items:
                 title: Address Object
                 type: object
-                description: ''
+                description: Address object
                 properties:
                   fullAddress:
                     type: string
@@ -9220,21 +9516,32 @@ components:
                     description: Whether address is primary or secondary
                 x-internal: true
             metadata:
+              title: Accounts Metadata
               type: object
+              description: Metadata related to account-specific data
+              x-internal: true
               properties:
                 createdAt:
                   type: string
+                  title: Date and Time string
                   format: date-time
-                  description: 'The datetime when this identity was retrieved by Smile, This will be of the form `2021-04-14T09:30:24Z`.'
-                accountId:
+                  example: '2021-04-14T09:30:24Z'
+                  description: Date and time
+                  x-internal: true
+                accountsId:
                   type: string
-                  description: the account ID associated with this identity.
+                  description: The account ID associated with this object
                 userId:
                   type: string
-                  description: the user ID associated with this identity.
+                  description: The user ID associated with this object
+              required:
+                - createdAt
+                - accountsId
+                - userId
           required:
             - id
             - fullName
+            - metadata
       x-internal: true
     IdentityListResponse:
       title: Identity List Response
@@ -9285,44 +9592,7 @@ components:
                 type: object
                 title: Identity
                 description: The stored identity information of the user from an employment data provider.
-                x-examples:
-                  example-1:
-                    value:
-                      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                      fullName: 'George Cimafranca Palomero, Jr'
-                      firstName: George
-                      middleName: Cimafranca
-                      lastName: Palomero
-                      suffix: II
-                      gender: Male
-                      dob: '2019-08-24'
-                      maritalStatus: Divorced
-                      countryResidence: AF
-                      citizenship: Citizen
-                      photoUrl: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
-                      email:
-                        - address: gpalomero@yahoo.com
-                          type: Primary
-                      mobilePhone:
-                        - number: string
-                          type: Primary
-                      fixedPhone:
-                        - number: string
-                          type: Primary
-                      socialProfile:
-                        - socialUrl: 'https://www.facebook.com/gpalomero'
-                          type: Twitter
-                      address:
-                        - fullAddress: string
-                          line1: string
-                          line2: string
-                          city: string
-                          region: string
-                          zip: string
-                          country: PH
-                          latitude: string
-                          longitude: string
-                          type: Primary
+                x-examples: {}
                 x-tags:
                   - Identities
                 properties:
@@ -9759,7 +10029,7 @@ components:
                     items:
                       title: Address Object
                       type: object
-                      description: ''
+                      description: Address object
                       properties:
                         fullAddress:
                           type: string
@@ -10055,21 +10325,32 @@ components:
                           description: Whether address is primary or secondary
                       x-internal: true
                   metadata:
+                    title: Accounts Metadata
                     type: object
+                    description: Metadata related to account-specific data
+                    x-internal: true
                     properties:
                       createdAt:
                         type: string
+                        title: Date and Time string
                         format: date-time
-                        description: 'The datetime when this identity was retrieved by Smile, This will be of the form `2021-04-14T09:30:24Z`.'
-                      accountId:
+                        example: '2021-04-14T09:30:24Z'
+                        description: Date and time
+                        x-internal: true
+                      accountsId:
                         type: string
-                        description: the account ID associated with this identity.
+                        description: The account ID associated with this object
                       userId:
                         type: string
-                        description: the user ID associated with this identity.
+                        description: The user ID associated with this object
+                    required:
+                      - createdAt
+                      - accountsId
+                      - userId
                 required:
                   - id
                   - fullName
+                  - metadata
       x-internal: true
   responses:
     Standard-Errors:
@@ -10144,14 +10425,14 @@ components:
         type: string
       description: Uses the filter values of the previous page to determine the next set of items.
     userId:
-      name: userid
+      name: userId
       in: query
       required: false
       schema:
         type: string
       description: Filter to those associated with a particular user ID.
     accountId:
-      name: accountid
+      name: accountId
       in: query
       required: false
       schema:

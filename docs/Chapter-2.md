@@ -8,7 +8,7 @@ Its easy to get started with the Smile API! Implementing the Smile API involves 
 
 1. **Link token:** Your application server sends a request to our REST API to generate a short-lived "Link" token.
 
-2. **Wink Widget:** Using the Link token, your application client initializes the client SDK to launch the Smile Wink widget. Your end-users interact with this widget to submit their login credentials to authenticate with their employment data provider over a secure and encrypted connection.
+2. **Wink Widget:** Using the Link token, your application client initializes the client SDK to launch the Smile "Wink" widget. Your end-users interact with this widget to submit their login credentials to authenticate with their employment data provider over a secure and encrypted connection.
 
 3. **User Creation:** Once the user successfully authenticates via the Smile Wink widget, a user account is created representing the user's authorized access to a specific employment data provider.
 
@@ -23,7 +23,7 @@ Its easy to get started with the Smile API! Implementing the Smile API involves 
 ## Signing up for a Developer Account
 To get started, register your application with us by emailing developers@getsmileapi.com.
 
-After registration, your application will be assigned a client ID and a client secret. The client secret must be kept safe and used only in exchanges between your application's server and Smile API's server.
+After registration, your application will be assigned an API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server.
 
 ---
 <!-- focus: false -->
