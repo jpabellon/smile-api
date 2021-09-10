@@ -23,7 +23,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="smileicon32.webp" sizes="32x32">
     <link rel="icon" href="smileicon192.webp" sizes="192x192">
-    <title>Smile Wink Quickstart</title>
+    <title>Smile Wink Quickstart - Sandbox Mode</title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
             },
 
             onClose: () => {
-                console.log('Link closed')
+                console.log('Widget closed')
             },
 
             onTokenExpired: updateToken => {
@@ -74,6 +74,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
         smileLinkModal.open()
     </script>
 </body>
+
 </html>
 
 ```
@@ -113,7 +114,7 @@ Below steps are also included in the README.md document included in the the Quic
 > For example, in Mac or Linux machines open up the Terminal, you can use vi and enter the following commands as a Super User:
 
 ```bash
-touch .env
+sudo touch .env
 ```
 
 > On Windows machines, Windows will not allow you to create a .env file directly from Windows Explorer since it will not allow file names starting with a ".". To get around this:
@@ -139,7 +140,7 @@ API_KEY_SECRET=<apisecret>
 API_HOST=<apiURL>
 ```
 
-> **You can use as reference ".env.example" included in the Quickstart repository or archive**
+> **The .env file is normally hidden by your system.** You may want to enable showing of hidden files in your system preferences to be able to see it. **You can use ".env.example" file, included in the Quickstart repository, as a reference.**
 
 
 6. Save and close your file.
@@ -165,6 +166,8 @@ curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.
 npm install --global yarn
 yarn install
 ```
+
+> You may need to run as a Super User if you don't have enough permissions. On a Mac or Linux machine, you can run the commands as a superuser by using 'sudo'. On Windows, you can run the command with an administrator trust-level, or by right-clicking the program in the UI and choosing "run as administrator."
 
 8. Run the server:
 ```bash
