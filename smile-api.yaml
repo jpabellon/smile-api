@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 0.2.0
+  version: 1.0.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -1733,7 +1733,7 @@ paths:
             schema:
               type: object
               properties:
-                externalMetaData:
+                externalMetadata:
                   title: Object-ExternalMetadata
                   type: object
                   additionalProperties:
@@ -2869,7 +2869,7 @@ paths:
       parameters: []
   /tokens:
     post:
-      summary: Create Token
+      summary: Refresh Token
       operationId: create-token
       responses:
         '201':
@@ -3399,7 +3399,7 @@ paths:
                     message: The credentials you provided are incorrect.
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
-      description: Create a new token for a user.
+      description: Refresh a token for a user
       tags:
         - Tokens
       parameters:
@@ -4953,7 +4953,7 @@ paths:
                               type: string
                               example: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
                               description: URL to photo or avatar
-                            email:
+                            emails:
                               type: array
                               description: A collection of email addresses.
                               items:
@@ -4974,7 +4974,7 @@ paths:
                                     description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                                     example: Primary
                                     x-internal: true
-                            mobilePhone:
+                            mobilePhones:
                               type: array
                               description: A collection of mobile phone numbers
                               items:
@@ -4996,7 +4996,7 @@ paths:
                                     description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                                     example: Primary
                                     x-internal: true
-                            fixedPhone:
+                            fixedPhones:
                               type: array
                               description: A collection of landline phone numbers.
                               items:
@@ -5018,7 +5018,7 @@ paths:
                                     description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                                     example: Primary
                                     x-internal: true
-                            socialProfile:
+                            socialProfiles:
                               type: array
                               description: A collection of social media URLs
                               items:
@@ -5037,7 +5037,7 @@ paths:
                                       - Others
                                     example: Facebook
                                     description: Social media type
-                            address:
+                            addresses:
                               type: array
                               items:
                                 title: Address Object
@@ -5350,7 +5350,7 @@ paths:
                                   example: '2021-04-14T09:30:24Z'
                                   description: Date and time
                                   x-internal: true
-                                accountsId:
+                                accountId:
                                   type: string
                                   description: The account ID associated with this object
                                 userId:
@@ -5358,7 +5358,7 @@ paths:
                                   description: The user ID associated with this object
                               required:
                                 - createdAt
-                                - accountsId
+                                - accountId
                                 - userId
                           required:
                             - id
@@ -5826,7 +5826,7 @@ paths:
                     message: The credentials you provided are incorrect.
                     requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
                     data: {}
-      operationId: get-identities
+      operationId: list-identities
       description: Get the user's identities from all provider accounts.
       parameters:
         - name: size
@@ -6250,7 +6250,7 @@ paths:
                         type: string
                         example: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
                         description: URL to photo or avatar
-                      email:
+                      emails:
                         type: array
                         description: A collection of email addresses.
                         items:
@@ -6271,7 +6271,7 @@ paths:
                               description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                               example: Primary
                               x-internal: true
-                      mobilePhone:
+                      mobilePhones:
                         type: array
                         description: A collection of mobile phone numbers
                         items:
@@ -6293,7 +6293,7 @@ paths:
                               description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                               example: Primary
                               x-internal: true
-                      fixedPhone:
+                      fixedPhones:
                         type: array
                         description: A collection of landline phone numbers.
                         items:
@@ -6315,7 +6315,7 @@ paths:
                               description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                               example: Primary
                               x-internal: true
-                      socialProfile:
+                      socialProfiles:
                         type: array
                         description: A collection of social media URLs
                         items:
@@ -6334,7 +6334,7 @@ paths:
                                 - Others
                               example: Facebook
                               description: Social media type
-                      address:
+                      addresses:
                         type: array
                         items:
                           title: Address Object
@@ -6647,7 +6647,7 @@ paths:
                             example: '2021-04-14T09:30:24Z'
                             description: Date and time
                             x-internal: true
-                          accountsId:
+                          accountId:
                             type: string
                             description: The account ID associated with this object
                           userId:
@@ -6655,7 +6655,7 @@ paths:
                             description: The user ID associated with this object
                         required:
                           - createdAt
-                          - accountsId
+                          - accountId
                           - userId
                     required:
                       - id
@@ -7431,7 +7431,7 @@ components:
     UserPostRequest:
       type: object
       properties:
-        externalMetaData:
+        externalMetadata:
           title: Object-ExternalMetadata
           type: object
           additionalProperties:
@@ -8335,7 +8335,7 @@ components:
           type: string
           example: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
           description: URL to photo or avatar
-        email:
+        emails:
           type: array
           description: A collection of email addresses.
           items:
@@ -8356,7 +8356,7 @@ components:
                 description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                 example: Primary
                 x-internal: true
-        mobilePhone:
+        mobilePhones:
           type: array
           description: A collection of mobile phone numbers
           items:
@@ -8378,7 +8378,7 @@ components:
                 description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                 example: Primary
                 x-internal: true
-        fixedPhone:
+        fixedPhones:
           type: array
           description: A collection of landline phone numbers.
           items:
@@ -8400,7 +8400,7 @@ components:
                 description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                 example: Primary
                 x-internal: true
-        socialProfile:
+        socialProfiles:
           type: array
           description: A collection of social media URLs
           items:
@@ -8419,7 +8419,7 @@ components:
                   - Others
                 example: Facebook
                 description: Social media type
-        address:
+        addresses:
           type: array
           items:
             title: Address Object
@@ -8732,7 +8732,7 @@ components:
               example: '2021-04-14T09:30:24Z'
               description: Date and time
               x-internal: true
-            accountsId:
+            accountId:
               type: string
               description: The account ID associated with this object
             userId:
@@ -8740,7 +8740,7 @@ components:
               description: The user ID associated with this object
           required:
             - createdAt
-            - accountsId
+            - accountId
             - userId
       required:
         - id
@@ -9131,7 +9131,7 @@ components:
               type: string
               example: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
               description: URL to photo or avatar
-            email:
+            emails:
               type: array
               description: A collection of email addresses.
               items:
@@ -9152,7 +9152,7 @@ components:
                     description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                     example: Primary
                     x-internal: true
-            mobilePhone:
+            mobilePhones:
               type: array
               description: A collection of mobile phone numbers
               items:
@@ -9174,7 +9174,7 @@ components:
                     description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                     example: Primary
                     x-internal: true
-            fixedPhone:
+            fixedPhones:
               type: array
               description: A collection of landline phone numbers.
               items:
@@ -9196,7 +9196,7 @@ components:
                     description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                     example: Primary
                     x-internal: true
-            socialProfile:
+            socialProfiles:
               type: array
               description: A collection of social media URLs
               items:
@@ -9215,7 +9215,7 @@ components:
                       - Others
                     example: Facebook
                     description: Social media type
-            address:
+            addresses:
               type: array
               items:
                 title: Address Object
@@ -9528,7 +9528,7 @@ components:
                   example: '2021-04-14T09:30:24Z'
                   description: Date and time
                   x-internal: true
-                accountsId:
+                accountId:
                   type: string
                   description: The account ID associated with this object
                 userId:
@@ -9536,7 +9536,7 @@ components:
                   description: The user ID associated with this object
               required:
                 - createdAt
-                - accountsId
+                - accountId
                 - userId
           required:
             - id
@@ -9940,7 +9940,7 @@ components:
                     type: string
                     example: 'https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg'
                     description: URL to photo or avatar
-                  email:
+                  emails:
                     type: array
                     description: A collection of email addresses.
                     items:
@@ -9961,7 +9961,7 @@ components:
                           description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                           example: Primary
                           x-internal: true
-                  mobilePhone:
+                  mobilePhones:
                     type: array
                     description: A collection of mobile phone numbers
                     items:
@@ -9983,7 +9983,7 @@ components:
                           description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                           example: Primary
                           x-internal: true
-                  fixedPhone:
+                  fixedPhones:
                     type: array
                     description: A collection of landline phone numbers.
                     items:
@@ -10005,7 +10005,7 @@ components:
                           description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
                           example: Primary
                           x-internal: true
-                  socialProfile:
+                  socialProfiles:
                     type: array
                     description: A collection of social media URLs
                     items:
@@ -10024,7 +10024,7 @@ components:
                             - Others
                           example: Facebook
                           description: Social media type
-                  address:
+                  addresses:
                     type: array
                     items:
                       title: Address Object
@@ -10337,7 +10337,7 @@ components:
                         example: '2021-04-14T09:30:24Z'
                         description: Date and time
                         x-internal: true
-                      accountsId:
+                      accountId:
                         type: string
                         description: The account ID associated with this object
                       userId:
@@ -10345,7 +10345,7 @@ components:
                         description: The user ID associated with this object
                     required:
                       - createdAt
-                      - accountsId
+                      - accountId
                       - userId
                 required:
                   - id
