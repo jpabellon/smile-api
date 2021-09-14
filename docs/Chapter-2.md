@@ -24,25 +24,3 @@ Its easy to get started with the Smile API! Implementing the Smile API involves 
 To get started, register your application with us by emailing developers@getsmileapi.com.
 
 After registration, your application will be assigned an API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server.
-
----
-<!-- focus: false -->
-![Modes](https://img.icons8.com/material-rounded/50/000000/switch-on.png)
-
-## Modes of Operation
-The API is available in two modes that can be accessed by sending requests to different base URLs. Each API client secret you are granted can only be used with a single mode. For example: an API client ID and secret granted to access the Sandbox can only be used in that mode.
-
-| Mode        | Host                                        | Description |
-|-------------|---------------------------------------------|-------------|
-| Sandbox     | https://sandbox.smileapi.io     |       Use Sandbox mode to build and test your integration. In this mode, you must use test credentials to authenticate with the employment data providers. All API endpoints will return mock data and no actual user data is returned.  |
-| Production  | https://open.smileapi.io  |       Production mode is used to go live with your integration. Your end-users will use their login credentials to authenticate with their employment data providers. API endpoints return real data and in this mode, all API calls are billable.  |
-
----
-<!-- focus: false -->
-![Versions](https://img.icons8.com/ios-glyphs/50/000000/versions.png)
-
-## Versioning
-The version is included in the URI Path. So for example it will look like: https://open.smileapi.io/v1/
-- The versioning convention we use is the **1.2.3** format, where **1** is the major version, **2** is the minor version, and **3** is the patch update:
-    - **Major version:** The version used in the URI and denotes breaking changes to the API. While we try to keep changes backward compatible, there may be occasions where we will need to introduce changes that might change existing behavior or functionality. These changes will be implemented in versions of the API accessible under a differnet URI (eg https://open.smileapi.io/v2/). You can continue to use the existing URI to avoid breaking existing integrations, but in order to take advantage of new features, you will have to update your application to point to the new version and URI. 
-    - **Minor and Patch versions:** These are transparent to the client and we use this internally for backward-compatible updates. You do not need to update your integration when we release minor updates or patches. We will communicate these via via our change logs and email notifications, so you are updated with  any of these changes.

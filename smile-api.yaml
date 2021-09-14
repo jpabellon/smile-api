@@ -1222,7 +1222,7 @@ paths:
                               title: Object ID
                               description: Unique ID of this object
                               x-internal: true
-                            externalMetaData:
+                            externalMetadata:
                               title: Object-ExternalMetadata
                               type: object
                               additionalProperties:
@@ -1802,7 +1802,7 @@ paths:
                             title: Object ID
                             description: Unique ID of this object
                             x-internal: true
-                          externalMetaData:
+                          externalMetadata:
                             title: Object-ExternalMetadata
                             type: object
                             additionalProperties:
@@ -2381,7 +2381,7 @@ paths:
                         title: Object ID
                         description: Unique ID of this object
                         x-internal: true
-                      externalMetaData:
+                      externalMetadata:
                         title: Object-ExternalMetadata
                         type: object
                         additionalProperties:
@@ -4958,6 +4958,7 @@ paths:
                               description: A collection of email addresses.
                               items:
                                 type: object
+                                title: email
                                 properties:
                                   address:
                                     type: string
@@ -4979,6 +4980,7 @@ paths:
                               description: A collection of mobile phone numbers
                               items:
                                 type: object
+                                title: mobilePhone
                                 properties:
                                   number:
                                     type: string
@@ -5001,6 +5003,7 @@ paths:
                               description: A collection of landline phone numbers.
                               items:
                                 type: object
+                                title: fixedPhone
                                 properties:
                                   number:
                                     type: string
@@ -5023,6 +5026,7 @@ paths:
                               description: A collection of social media URLs
                               items:
                                 type: object
+                                title: socialProfile
                                 properties:
                                   socialUrl:
                                     type: string
@@ -6255,6 +6259,7 @@ paths:
                         description: A collection of email addresses.
                         items:
                           type: object
+                          title: email
                           properties:
                             address:
                               type: string
@@ -6276,6 +6281,7 @@ paths:
                         description: A collection of mobile phone numbers
                         items:
                           type: object
+                          title: mobilePhone
                           properties:
                             number:
                               type: string
@@ -6298,6 +6304,7 @@ paths:
                         description: A collection of landline phone numbers.
                         items:
                           type: object
+                          title: fixedPhone
                           properties:
                             number:
                               type: string
@@ -6320,6 +6327,7 @@ paths:
                         description: A collection of social media URLs
                         items:
                           type: object
+                          title: socialProfile
                           properties:
                             socialUrl:
                               type: string
@@ -7407,7 +7415,7 @@ components:
           title: Object ID
           description: Unique ID of this object
           x-internal: true
-        externalMetaData:
+        externalMetadata:
           title: Object-ExternalMetadata
           type: object
           additionalProperties:
@@ -7494,7 +7502,7 @@ components:
                   title: Object ID
                   description: Unique ID of this object
                   x-internal: true
-                externalMetaData:
+                externalMetadata:
                   title: Object-ExternalMetadata
                   type: object
                   additionalProperties:
@@ -7592,7 +7600,7 @@ components:
               title: Object ID
               description: Unique ID of this object
               x-internal: true
-            externalMetaData:
+            externalMetadata:
               title: Object-ExternalMetadata
               type: object
               additionalProperties:
@@ -7671,7 +7679,7 @@ components:
                     title: Object ID
                     description: Unique ID of this object
                     x-internal: true
-                  externalMetaData:
+                  externalMetadata:
                     title: Object-ExternalMetadata
                     type: object
                     additionalProperties:
@@ -8340,6 +8348,7 @@ components:
           description: A collection of email addresses.
           items:
             type: object
+            title: email
             properties:
               address:
                 type: string
@@ -8361,6 +8370,7 @@ components:
           description: A collection of mobile phone numbers
           items:
             type: object
+            title: mobilePhone
             properties:
               number:
                 type: string
@@ -8383,6 +8393,7 @@ components:
           description: A collection of landline phone numbers.
           items:
             type: object
+            title: fixedPhone
             properties:
               number:
                 type: string
@@ -8405,6 +8416,7 @@ components:
           description: A collection of social media URLs
           items:
             type: object
+            title: socialProfile
             properties:
               socialUrl:
                 type: string
@@ -9136,6 +9148,7 @@ components:
               description: A collection of email addresses.
               items:
                 type: object
+                title: email
                 properties:
                   address:
                     type: string
@@ -9157,6 +9170,7 @@ components:
               description: A collection of mobile phone numbers
               items:
                 type: object
+                title: mobilePhone
                 properties:
                   number:
                     type: string
@@ -9179,6 +9193,7 @@ components:
               description: A collection of landline phone numbers.
               items:
                 type: object
+                title: fixedPhone
                 properties:
                   number:
                     type: string
@@ -9201,6 +9216,7 @@ components:
               description: A collection of social media URLs
               items:
                 type: object
+                title: socialProfile
                 properties:
                   socialUrl:
                     type: string
@@ -9945,6 +9961,7 @@ components:
                     description: A collection of email addresses.
                     items:
                       type: object
+                      title: email
                       properties:
                         address:
                           type: string
@@ -9966,6 +9983,7 @@ components:
                     description: A collection of mobile phone numbers
                     items:
                       type: object
+                      title: mobilePhone
                       properties:
                         number:
                           type: string
@@ -9988,6 +10006,7 @@ components:
                     description: A collection of landline phone numbers.
                     items:
                       type: object
+                      title: fixedPhone
                       properties:
                         number:
                           type: string
@@ -10010,6 +10029,7 @@ components:
                     description: A collection of social media URLs
                     items:
                       type: object
+                      title: socialProfile
                       properties:
                         socialUrl:
                           type: string

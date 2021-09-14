@@ -78,8 +78,11 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 </html>
 
 ```
+---
+<!-- focus: false -->
+![Token](https://img.icons8.com/material-outlined/60/000000/settings-3--v1.png)
 
-### Configuration parameters
+## Configuration parameters
 
 | Parameter |Value |
 |----------|---------|
@@ -89,7 +92,47 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 
 ---
 <!-- focus: false -->
-![Example](https://img.icons8.com/material/50/000000/example.png)
+![Token](https://img.icons8.com/ios/50/000000/sms-token.png)
+
+## Refreshing a User's Token
+You can refresh a user's token by calling the /tokens endpoint. Simply pass the userId as a parameter in the query to give the user a new token. More information can be found in the Tokens endpoint documentation.
+
+---
+<!-- focus: false -->
+![Event](https://img.icons8.com/ios/50/000000/important-event.png)
+
+## Link events 
+As the user moves through the Wink widget screen, any activities performed by the user are captured and are etiher used to update the messsages and presentation of the modal window, or are sent to Smile so that any account-related data can be updated. 
+
+In the case of the latter, if the the user was able to successfully authenticate with an employment data provider, the Account status is changed to "CONNECTED". The account status of the user can be queried at any time via the /accounts endpoint. Examples of the events captured include:
+
+| Event |Description |
+|----------|---------|
+| PENDING | The account was created but is pending successful authentication |
+| AWAITING_MFA | The user was able to successfully authenticate however the data provider is waiting for the user to enter their verification code in a 2-factor authentication scenario. |
+| ERROR | The data provider returned an error. The user may not have entered the wrong credentials or there was a problem on the side of the provider. |
+| CONNECTED | The user was able to successfully authenticate with an employment data provider. |
+
+
+---
+<!-- focus: false -->
+![Testing](https://img.icons8.com/material-outlined/50/000000/test-tube.png)
+
+## Testing data retrieval in Sandbox
+
+Smile provides a Sandbox mode for our production environment to allow you to test your integration with sample data.
+
+To use the Sandbox, you can use the following example credentials:
+
+| Name | Email | Mobile Phone | Password | Verification Code |
+|---|---|---|---|---|
+| George Palomero Jr. | gpalomero1234@yahoo.com | (+63) 9559991234 | 123456 | 1234|
+| Ryan Ng | ryan1234@gmail.com |  (+63) 9559994321 | 654321 | 1234 |
+| Christina Tan | christina4321@yahoo.com |  (+63) 9559996789 | YGUS1 | 1234 |
+
+---
+<!-- focus: false -->
+![Example](https://img.icons8.com/ios/50/000000/speed.png)
 
 ## Quickstart Sample Implementation
 > We provide sample code in [Github](https://github.com/SmileAPI/quickstart) which you can download and modify according to your own requirements. 
@@ -177,26 +220,3 @@ node index.js
 9. Open up the your browser and open up the example Wink Widget. For example, if you specified port:8000 in your ".env" configuration file, open up http://127.0.0.1:8000 in your web browser.
 
 10. Sit back, relax, and pat yourself on the back for a job well done!
-
----
-<!-- focus: false -->
-![Token](https://img.icons8.com/ios/50/000000/sms-token.png)
-
-## Issuing a New Token
-You can issue a new token for a user by calling the /tokens endpoint. Simply pass the userid as an argument in the Body of the request to give the user a new token. More information can be found in the Tokens endpoint documentation.
-
----
-<!-- focus: false -->
-![Event](https://img.icons8.com/ios/50/000000/important-event.png)
-
-## Link events 
-As the user moves through the Wink widget screen, any activities performed by the user are captured and are etiher used to update the messsages and presentation of the modal window, or are sent to Smile so that any account-related data can be updated. 
-
-In the case of the latter, if the the user was able to successfully authenticate with an employment data provider, the Account status is changed to "CONNECTED". The account status of the user can be queried at any time via the /accounts endpoint. Examples of the events captured include:
-
-| Event |Description |
-|----------|---------|
-| PENDING | The account was created but is pending successful authentication |
-| AWAITING_MFA | The user was able to successfully authenticate however the data provider is waiting for the user to enter their verification code in a 2-factor authentication scenario. |
-| ERROR | The data provider returned an error. The user may not have entered the wrong credentials or there was a problem on the side of the provider. |
-| CONNECTED | The user was able to successfully authenticate with an employment data provider. |
