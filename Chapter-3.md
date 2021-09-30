@@ -48,7 +48,31 @@ The version is included in the URI Path. So for example it will look like: http
 |500 - Internal Server Error |The server encountered an unexpected condition which prevented it from fulfilling the request.                                                   |SERVER_ERROR          |Our system is currently experiencing issues. Please try again later or contact support.                                           |
 |501 - Not Implemented      |The HTTP method is not supported by the server and cannot be handled.                                                                            |UNSUPPORTED_METHOD    |The HTTP method you used is not supported for this resource.                                                                      |
 |503 - Service Unavailable  |The server is not ready to handle the request.                                                                                                   |SERVER_UNAVAILABLE    |The server is not available to handle the request. It may be down or under maintenance. Please try again later or contact support.|
-|504 - Gateway Timeout      |The server cannot give a response in time.                                                                                                       |TIME_LIMIT_EXCEEDED   |The server was not able to give a response in the allotted time. Please try again or contact support.         
+|504 - Gateway Timeout      |The server cannot give a response in time.                                                                                                       |TIME_LIMIT_EXCEEDED   |The server was not able to give a response in the allotted time. Please try again or contact support.  
+
+---
+<!-- focus: false -->
+![Pagination](https://img.icons8.com/windows/50/000000/choose-page.png)
+
+## List results and pagination
+
+Resources or API endpoints, return a list or a collection of objects. By default we return 10, with a maximum of 100, at a time. You can limit the results by passing a parameter for size. For more information on filterig or limiting results, see below on query parameters.
+
+When Smile returns a collection, we will also return a value called **nextCursor**. See below for an example:
+
+```json
+{
+    "code": "OK",
+    "message": "Success!",
+    "requestId": "17bc5a84-2468-47f6-9d3c-05b5257befa5",
+    "data": {
+        "nextCursor": "20",
+        "items": [...]
+    }
+}
+```
+
+To go to the next page in a collection, simply append the **cursor** parameter when you query an endpoint, using the **nextCursor** value returned from your previous query to go to the next page in the collection. See below for more information on cursor and other query parameters.
 
 ---
 <!-- focus: false -->
@@ -56,12 +80,12 @@ The version is included in the URI Path. So for example it will look like: http
 
 ## Query Parameters
 
-API endpoints which return a collection of objects can be filtered or limited based on different query parameters. Below are some examples:
+API endpoints which return a list or collection of objects can be filtered or limited based on different query parameters. Below are some examples:
 
 |Parameter |Description |
 |----------------------|----------------------|
-| size | The number of objects you want returned in a collection |
-| cursor | Uses the filter values of the previous page to determine the next set of items |
+| size | The number of objects you want returned in a collection. See more information above on default values. |
+| cursor | Uses the filter values of the previous page to determine the next set of items. See more information above on pagination. |
 | userId | Filter the results by the associated userId |
 | acccountId | For account-related data, filter the results based on the associated accountId |
 
@@ -69,7 +93,8 @@ Some resources however have unique query parameters associated with them. Check 
 
 ---
 <!-- focus: false -->
-![Rates](https://img.icons8.com/ios-filled/50/000000/traffic-light.png)
+![Rate Limits](https://img.icons8.com/ios-filled/50/000000/traffic-light.png)
+
 
 ## Rate Limits
 
